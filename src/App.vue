@@ -1,15 +1,19 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!-- <template>
+  <div>
+    <NavBar />
+    <router-view />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/NavBar.vue';
+
+// import HelloWorld from './views/LoginPage.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NavBar
   }
 }
 </script>
@@ -23,4 +27,17 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>
+</style> -->
+
+<template>
+  <div class="min-h-screen bg-gray-100">
+    <NavBar />
+    <main class="container mx-auto px-4 py-8">
+      <router-view />
+    </main>
+  </div>
+</template>
+
+<script setup>
+import NavBar from './components/NavBar.vue'
+</script>
