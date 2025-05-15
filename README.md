@@ -3,7 +3,7 @@
 ### Requirements
 - Node.js 18.15.0 or higher
 - npm use 20
-- 
+
 ## Installation
 
 1. Clone the repository to your local machine:
