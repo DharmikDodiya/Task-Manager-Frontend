@@ -34,3 +34,7 @@
     ```bash
     npm run build
     ```
+
+# Feature
+
+**Task Manager Application enables users to securely register and log in using JWT authentication, ensuring protected access to their personal task data. Once authenticated, users can create, view, update, and delete tasks with details such as title, description, due date, priority, and status. Tasks can be marked as completed, sorted by priority or due date, and filtered based on status for efficient task management**
