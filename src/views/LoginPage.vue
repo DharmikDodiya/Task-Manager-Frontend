@@ -1,5 +1,4 @@
 <template>
-  <!-- Login Modal -->
   <div class="container max-w-md mx-auto mt-5 p-4 bg-white shadow-sm rounded">
     <h2 class="text-center mb-4">Login</h2>
     <form @submit.prevent="login">
@@ -29,8 +28,8 @@
         </div>
       </div>
 
-      <div v-if="errors.non_field_errors" class="text-danger mb-3">
-        {{ errors.non_field_errors }}
+      <div v-if="errors.detail" class="text-danger mb-3">
+        {{ errors.detail }}
       </div>
 
       <div class="text-center">
@@ -62,18 +61,17 @@ const login = async () => {
       password: password.value,
     })
 
-    if (response?.data?.access && response?.data?.refresh) {
-      const { access, refresh } = response.data
-      localStorage.setItem('access', access)
-      localStorage.setItem('refresh', refresh)
+    if (response.data.access && response.data.refresh) {
+      localStorage.setItem('access', response.data.access)
+      localStorage.setItem('refresh', response.data.refresh)
       setAuth(true)
       router.push('/dashboard')
     }
   } catch (error) {
-    if (error.response) {
+    if (error.response && error.response.data) {
       errors.value = error.response.data
     } else {
-      errors.value.non_field_errors = ['An unexpected error occurred.']
+      errors.value.detail = 'An unexpected error occurred. Please try again later.'
     }
   }
 }
@@ -82,5 +80,9 @@ const login = async () => {
 <style scoped>
 .container {
   max-width: 400px;
+}
+.text-danger {
+  color: red;
+  font-size: 0.9em;
 }
 </style>
