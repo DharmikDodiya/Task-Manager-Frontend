@@ -2,7 +2,7 @@
   <div class="container py-4">
     <!-- Task Form Button -->
     <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#taskFormModal">
-      {{ editingTaskId ? 'Update Task' : 'Add Task' }}
+     Add Task
     </button>
     <div>
     <!-- Sorting and Filtering Controls -->
@@ -56,7 +56,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="taskFormModalLabel">{{ editingTaskId ? 'Edit Task' : 'Add Task' }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" @click="resetForm" aria-label="Close"></button>
+            <button type="button" id="btn-close" data-bs-dismiss="modal" @click="resetForm" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <!-- Title -->
@@ -116,7 +116,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import API from '../api';
-import { Modal } from 'bootstrap';
 
 const tasks = ref([]);
 const title = ref('');
@@ -170,10 +169,8 @@ const submitTask = async () => {
     resetForm();
     await loadTasks();
 
-    // Close the modal after submission
-    const modalElement = document.getElementById('taskFormModal');
-    const modalInstance = Modal.getInstance(modalElement);
-    modalInstance.hide();
+    const modalElement = document.getElementById('btn-close');
+    modalElement.click();
   } catch (err) {
     if (err.response && err.response.status === 400) {
       errors.value = err.response.data; // Capture the error messages
